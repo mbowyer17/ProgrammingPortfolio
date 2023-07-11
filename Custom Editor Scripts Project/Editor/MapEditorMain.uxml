@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="MapEditorStyles.uss" />
+    <ui:Label text="Create New Map" display-tooltip-when-elided="true" name="Title" class="Title" />
+    <ui:Label text="Map Size:" display-tooltip-when-elided="true" name="MapSize" class="SubHeading" style="height: 17px;" />
+    <ui:IMGUIContainer name="MapSizeFields" style="flex-direction: row; padding-bottom: 0;">
+        <uie:IntegerField label="X Axis:" value="0" name="XAxis" class="HeightWidthField" />
+        <uie:IntegerField label="Z Axis" value="0" name="ZAxis" readonly="false" class="HeightWidthField" />
+    </ui:IMGUIContainer>
+    <ui:Button text="Spawn Map" display-tooltip-when-elided="true" name="SpawnMapButton" class="SpawnMapButton" />
+    <ui:Label text="Units:" display-tooltip-when-elided="true" class="SubHeading" style="-unity-font-style: bold;" />
+    <ui:IMGUIContainer name="PlayerButtonContainer" class="PlayerButtonContainer">
+        <ui:Button display-tooltip-when-elided="true" name="Unit1Button" class="PlayerButtons" style="height: 131px; right: 0; align-items: auto; flex-direction: row; justify-content: flex-start; left: 0;" />
+        <ui:Button display-tooltip-when-elided="true" name="Unit2Button" class="PlayerButtons" style="right: 5px; justify-content: flex-start; align-items: auto; width: 138px; flex-direction: row; flex-wrap: nowrap; left: 0;" />
+    </ui:IMGUIContainer>
+    <ui:IMGUIContainer name="UnitFields" style="flex-direction: row; padding-bottom: 0;">
+        <uie:FloatField label="Speed:" value="10" name="Speed" />
+        <uie:FloatField label="Acceleration:" value="8" name="Acceleration" />
+    </ui:IMGUIContainer>
+    <ui:Slider picking-mode="Ignore" label="AngularSpeedSlider" value="120" high-value="240" name="AngularSpeedSlider" show-input-field="true" />
+</ui:UXML>

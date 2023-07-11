@@ -1,0 +1,133 @@
+#Test > Label {
+    width: 0;
+    height: 0;
+}
+
+#MapSizeFields {
+    width: 100%;
+}
+
+.FieldClass {
+    width: 50%;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    left: auto;
+    overflow: hidden;
+}
+
+.FieldClass > Label {
+    width: 13%;
+    min-width: 13%;
+}
+
+#XAxis {
+    width: 50%;
+}
+
+#XAxis > Label {
+    width: 13%;
+    min-width: 13%;
+    padding-right: 40px;
+}
+
+#XAxis > #unity-text-input {
+}
+
+#ZAxis {
+    width: 50%;
+}
+
+#ZAxis > Label {
+    width: 13%;
+    min-width: 13%;
+    padding-right: 40px;
+}
+
+#ZAxis > #unity-text-input {
+}
+
+.FieldClass > #unity-text-input {
+    width: auto;
+    min-width: 80%;
+}
+
+.PlayerButtons {
+    width: 132px;
+    height: 132px;
+    margin-left: 39px;
+}
+
+.PlayerButtonContainer {
+    height: 118px;
+}
+
+.PlayerButtonContainer {
+    height: 129px;
+    margin-bottom: 16px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.Title {
+    -unity-font-style: normal;
+    font-size: 30px;
+    -unity-text-align: upper-left;
+    padding-bottom: 10px;
+    background-color: rgb(101, 101, 101);
+    margin-bottom: 20px;
+}
+
+.SpawnMapButton {
+    margin-bottom: 20px;
+}
+
+.SubHeading {
+    width: auto;
+    -unity-font-style: bold;
+    height: 18px;
+    font-size: 18px;
+    padding-bottom: 30px;
+}
+
+#SpeedSlider {
+}
+
+#Speed {
+    width: 50%;
+}
+
+#Speed > Label {
+    width: 13%;
+    min-width: 13%;
+    padding-right: 40px;
+}
+
+#Speed > #unity-text-input {
+}
+
+#Acceleration {
+    width: 50%;
+}
+
+#Acceleration > Label {
+    width: 13%;
+    min-width: 13%;
+    padding-right: 76px;
+}
+
+#Acceleration > #unity-text-input {
+}
+
+#UnitFields {
+    width: 100%;
+}
+
+#SpawnMapButton {
+    height: 57px;
+    font-size: 20px;
+}
+
+#AngularSpeedSlider {
+}
