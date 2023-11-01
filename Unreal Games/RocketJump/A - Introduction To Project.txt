@@ -13,6 +13,7 @@ Objectives:
 
 Mechanics:
 - Character Controller
+This script defines the behaviour and mechanics of a player character. Using keyboard inputs, the character can move forward, backward, strafe left, and strafe right, while the camera follows the character's movements. The camera view is controlled by mouse input, allowing the player to look about. Jumping is possible with a specific button push, utilising the built-in mechanics for character hopping in Unreal Engine. In addition, the character can shoot by spawning projectiles from its position to imitate shooting. Notably, while in mid-air, the character can strafe left and right, creating a dynamic and responsive control experience. Input actions and axes are effectively connected to their respective functions, enabling straightforward control via keyboard and mouse inputs. This script initializes the character with default values and essential components, including the camera and spring arm, while also offering customization options such as the AirStrafeSpeed property to fine-tune air strafing behaviour.
 
 - Rocket projectile
 
