@@ -4,11 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "PortfolioWorkGameModeBase.generated.h"
+#include "PortfolioWorksGameModeBase.generated.h"
 
+/**
+ * 
+ */
 UCLASS()
-class PORTFOLIOWORK_API APortfolioWorkGameModeBase : public AGameModeBase
+class PORTFOLIOWORKS_API APortfolioWorksGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-
+	
 };

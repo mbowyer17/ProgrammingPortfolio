@@ -11,7 +11,7 @@ class UCameraComponent;
 class USpringArmComponent;
 
 UCLASS()
-class PORTFOLIOWORK_API AMyCharacter : public ACharacter
+class PORTFOLIOWORKS_API AMyCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -23,10 +23,11 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleDefaultsOnly, Category = "Weapon")
-	class AGun* Gun;
 
-public:	
+	float ShootCooldown = 0.5f;
+	float TimeOfLastShot = 0.f;
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -71,4 +72,8 @@ public:
 	// Air strafe speed while in air
 	UPROPERTY(EditAnywhere, Category = "Character")
 	float AirStrafeSpeed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	float MovementSpeed = 600.0f;
+
 };

@@ -2,10 +2,4 @@
 
 
 #include "RocketJumpGamemode.h"
-#include "MyCharacter.h"
 
-ARocketJumpGamemode::ARocketJumpGamemode() 
-{
-	//DefaultPawnClass = AMyCharacter::StaticClass();
-	//PlayerControllerClass = AMyCharacter::StaticClass();
-}

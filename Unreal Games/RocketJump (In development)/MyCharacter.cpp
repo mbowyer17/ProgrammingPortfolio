@@ -11,12 +11,13 @@
 // Sets default values
 AMyCharacter::AMyCharacter()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	// Create Components 
 	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	SpringArmComponent->SetupAttachment(RootComponent);
 	SpringArmComponent->TargetArmLength = 300.0f;
+
 
 	// Create Camera
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
@@ -33,7 +34,7 @@ AMyCharacter::AMyCharacter()
 void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	if (bPressedJump)
 	{
 		LaunchCharacter(FVector(0.f, 0.f, JumpHeight), false, false);
@@ -86,14 +87,14 @@ void AMyCharacter::MoveForward(float Value)
 		else
 		{
 			// If on the ground, use AddMovementInput as before
-			AddMovementInput(ForwardVector, Value);
+			AddMovementInput(ForwardVector, Value * MovementSpeed);
 		}
 	}
 }
 
 void AMyCharacter::MoveRight(float Value)
 {
-	
+
 
 	if (Controller != nullptr && Value != 0.f)
 	{
@@ -109,7 +110,7 @@ void AMyCharacter::MoveRight(float Value)
 		else
 		{
 			// If on the ground, use AddMovementInput as before
-			AddMovementInput(RightVector, Value);
+			AddMovementInput(RightVector, Value * MovementSpeed);
 		}
 	}
 }
@@ -125,34 +126,43 @@ void AMyCharacter::LookUp(float Value)
 	AddControllerPitchInput(Value);
 }
 
-void AMyCharacter::StartJump() 
+void AMyCharacter::StartJump()
 {
 	bPressedJump = true;
 }
 
-void AMyCharacter::StopJump() 
+void AMyCharacter::StopJump()
 {
 	bPressedJump = false;
 }
 
 void AMyCharacter::Shoot()
 {
-	UWorld* World = GetWorld();
-	// Get camera's Location and rotation
-	FVector CameraLocation;
-	FRotator CameraRotation;
-	GetActorEyesViewPoint(CameraLocation, CameraRotation);
 
-	// Set the spawn location slighty in front of camera
-	FVector MuzzleLocation = CameraLocation + FTransform(CameraRotation).TransformVector(FVector(100.f, 0.f, 0.f));
+	float CurrentTime = GetWorld()->GetRealTimeSeconds();
 
-	// Spawn Projectile
-	FActorSpawnParameters SpawnParams;
-	SpawnParams.Owner = this;
-	SpawnParams.Instigator = GetInstigator();
-	ARocketProjectile* Projectile = World->SpawnActor<ARocketProjectile>(ProjectileClass, MuzzleLocation, CameraRotation, SpawnParams);
+	if (CurrentTime >= TimeOfLastShot + ShootCooldown)
+	{
+		UWorld* World = GetWorld();
+		// Get camera's Location and rotation
+		FVector CameraLocation;
+		FRotator CameraRotation;
+		GetActorEyesViewPoint(CameraLocation, CameraRotation);
 
-	
+		// Set the spawn location slighty in front of camera
+		FVector MuzzleLocation = CameraLocation + FTransform(CameraRotation).TransformVector(FVector(100.f, 0.f, 0.f));
+
+		// Spawn Projectile
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = this;
+		SpawnParams.Instigator = GetInstigator();
+		ARocketProjectile* Projectile = World->SpawnActor<ARocketProjectile>(ProjectileClass, MuzzleLocation, CameraRotation, SpawnParams);
+
+		TimeOfLastShot = CurrentTime;
+	}
+
+
+
 }
 
 

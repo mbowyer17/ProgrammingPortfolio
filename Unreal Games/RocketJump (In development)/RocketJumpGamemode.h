@@ -10,10 +10,8 @@
  * 
  */
 UCLASS()
-class PORTFOLIOWORK_API ARocketJumpGamemode : public AGameModeBase
+class PORTFOLIOWORKS_API ARocketJumpGamemode : public AGameModeBase
 {
 	GENERATED_BODY()
 	
-public:
-	ARocketJumpGamemode();
 };

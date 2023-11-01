@@ -1,11 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "RocketProjectile.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/Character.h"
+#include "Engine/EngineTypes.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 // Sets default values
 ARocketProjectile::ARocketProjectile()
@@ -32,65 +33,41 @@ ARocketProjectile::ARocketProjectile()
 
 void ARocketProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
+    Explode();
 
-    if (OtherActor && OtherActor != this && OtherComp)
-    {
-        // Check if the hit actor is a character
-        ACharacter* HitCharacter = Cast<ACharacter>(OtherActor);
-
-        if (HitCharacter)
-        {
-            // Calculate the distance between the impact point and the player
-            float DistanceToPlayer = FVector::Distance(Hit.ImpactPoint, HitCharacter->GetActorLocation());
-
-            // Calculate a scale factor for the launch power based on the distance (you might need to adjust the formula to get the desired effect)
-            float LaunchPowerScale = FMath::Clamp(1.0f - DistanceToPlayer / DamageRadius, 0.0f, 1.0f);
-
-            // Apply the scaled launch power when launching the player
-            LaunchPlayer(HitCharacter, LaunchPower * LaunchPowerScale);
-
-            Destroy();
-        }
-        else
-        {
-            // Handle interaction with other objects (e.g., explode on impact)
-            Explode();
-        }
-    }
 }
 
 void ARocketProjectile::Explode()
 {
-    // Call the Blueprint event to handle explosion visuals and effects
-    OnRocketExplode();
+    TArray<AActor*> IgnoredActors;
+    IgnoredActors.Add(this);
 
-    // Check for actors in the damage radius
-    TArray<AActor*> ActorsToIgnore;
-    ActorsToIgnore.Add(this);
+    TArray<AActor*> AffectedActors;
 
-    TArray<FHitResult> HitResults;
-    FVector StartLocation = GetActorLocation();
-    FVector EndLocation = StartLocation + FVector::UpVector; // Adjust the direction as needed
+    // Specify object types. In this example, we're checking against pawns.
+    TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+    ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn));
 
-    FCollisionShape CollisionShape;
-    CollisionShape.SetSphere(DamageRadius);
+    // Find all actors within the explosion radius.
+    UKismetSystemLibrary::SphereOverlapActors(GetWorld(), GetActorLocation(), ExplosionRadius, ObjectTypes, ACharacter::StaticClass(), IgnoredActors, AffectedActors);
 
-    if (GetWorld()->SweepMultiByChannel(HitResults, StartLocation, EndLocation, FQuat::Identity, ECC_Visibility, CollisionShape, FCollisionQueryParams()))
+    for (AActor* Actor : AffectedActors)
     {
-        for (const FHitResult& HitResult : HitResults)
+        // Check if the hit actor is a character
+        ACharacter* HitCharacter = Cast<ACharacter>(Actor);
+        if (HitCharacter)
         {
-            ACharacter* PlayerCharacter = Cast<ACharacter>(HitResult.GetActor());
-            if (PlayerCharacter)
-            {
-                // Launch the player character in the opposite direction
-                LaunchPlayer(PlayerCharacter, LaunchPower); // Adjust the launch speed as needed
-                
-            }
+            FVector LaunchDirection = Actor->GetActorLocation() - GetActorLocation();
+            LaunchDirection.Normalize();
+
+            // Apply the scaled launch power when launching the player
+            LaunchPlayer(HitCharacter, LaunchPower);
+
+            Destroy();
         }
     }
 
-    // Destroy the rocket projectile after the explosion
-    //Destroy();
+
 }
 
 void ARocketProjectile::LaunchPlayer(ACharacter* PlayerCharacter, float LaunchSpeed)

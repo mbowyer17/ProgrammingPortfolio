@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Deadzone.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/PlayerController.h"
@@ -10,7 +9,7 @@
 // Sets default values
 ADeadzone::ADeadzone()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Create the collision box component
@@ -26,7 +25,7 @@ ADeadzone::ADeadzone()
 void ADeadzone::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame

@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class PortfolioWork : ModuleRules
+public class PortfolioWorks : ModuleRules
 {
-	public PortfolioWork(ReadOnlyTargetRules Target) : base(Target)
+	public PortfolioWorks(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	

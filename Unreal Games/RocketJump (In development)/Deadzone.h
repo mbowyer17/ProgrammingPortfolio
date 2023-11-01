@@ -7,11 +7,11 @@
 #include "Deadzone.generated.h"
 
 UCLASS()
-class PORTFOLIOWORK_API ADeadzone : public AActor
+class PORTFOLIOWORKS_API ADeadzone : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ADeadzone();
 
@@ -19,7 +19,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

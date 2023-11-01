@@ -7,12 +7,15 @@
 #include "RocketProjectile.generated.h"
 
 UCLASS()
-class PORTFOLIOWORK_API ARocketProjectile : public AActor
+class PORTFOLIOWORKS_API ARocketProjectile : public AActor
 {
-	GENERATED_BODY()
-	
+    GENERATED_BODY()
+
 public:
     ARocketProjectile();
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Explosion")
+    float ExplosionRadius;
 
 protected:
     UPROPERTY(VisibleAnywhere)
@@ -36,5 +39,6 @@ protected:
     void LaunchPlayer(ACharacter* PlayerCharacter, float LaunchSpeed);
 
     UPROPERTY(EditAnywhere, Category = "ZRocket")
-    float LaunchPower = 100.f;
+    float LaunchPower = 1000.f;
+
 };
