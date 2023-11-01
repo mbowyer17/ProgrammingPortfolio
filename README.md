@@ -1,6 +1,6 @@
 # ProgrammingPortfolio
 
-Welcome! My Name is Matthew Bowyer, a passionate gameplay programmer with expertise in both Unity (C#) and Unreal (C++). I have a BSc with First Class Honours in Game Design and Development (Programming) at University of Greenwich 
+Welcome! My Name is Matthew Bowyer, a passionate gameplay programmer with expertise in both Unity (C#) and Unreal (C++). I have a BSc with First Class Honours in Game Design and Development (Programming) at University of Greenwich. I'm Looking for an Intern or Junior position in Gameplay Programming.
 
 🎮 My Journey
 
