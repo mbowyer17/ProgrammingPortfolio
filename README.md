@@ -18,5 +18,7 @@ In this portfolio, you'll find curated code snippets that showcase my work in va
 
 I invite you to explore the code samples below and see my problem-solving and coding skills in action. If you're interested in collaborating or just want to chat about game development, don't hesitate to reach out.
 
-Linkedin: https://www.linkedin.com/in/matthewbowyer24/
+Please note this portfolio is still a working progress, I still have access to the project files, and I'm more than happy to share my work with you!
 
+Linkedin: https://www.linkedin.com/in/matthewbowyer24/
+Itch.io: https://matthewbow.itch.io/ 
