@@ -4,7 +4,10 @@
 #include "Projectile.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/StaticMeshComponent.h"
-
+#include "GameFramework/DamageType.h"
+#include "Npc_Walk.h"
+#include "GameFramework/DamageType.h"
+#include "Engine/DamageEvents.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -48,8 +51,14 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	// Check if the other actor is valid and not this projectile
 	if (OtherActor && (OtherActor != this))
 	{
-		// Apply damage
-		//OtherActor->TakeDamage(DamageAmount, FDamageEvent(UDamageType::StaticClass()), nullptr, this);
+		// Cast the OtherActor to your NPC class, if necessary
+		ANpc_Walk* HitNPC = Cast<ANpc_Walk>(OtherActor);
+		if (HitNPC)
+		{
+			
+			// Apply damage
+			HitNPC->TakeDamage(DamageAmount, FDamageEvent(UDamageType::StaticClass()), nullptr, this);
+		}
 	}
 
 	// Destroy the projectile

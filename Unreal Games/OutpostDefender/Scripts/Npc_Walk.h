@@ -28,4 +28,26 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Npc")
 	float Health;
+
+	void Death();
+
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser);
+
+	void Shoot();
+
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Projectile")
+	TSubclassOf<class ANpc_Projectile> ProjectileClass;
+
+	// Location to spawn the projectile (e.g., the muzzle of a gun)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Npc")
+	USceneComponent* MuzzleLocation;
+
+private: 
+	// Cooldown time in seconds
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	float ShootCooldown = 2.0f; // Set this to the desired cooldown duration
+
+	// Timestamp of the last shot
+	float LastShotTime = 0.0f;
 };

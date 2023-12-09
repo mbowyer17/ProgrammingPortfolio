@@ -7,6 +7,8 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine.h"
+#include "Npc_Walk.h"
 
 
 ANpc_WalkAi::ANpc_WalkAi()
@@ -18,7 +20,7 @@ ANpc_WalkAi::ANpc_WalkAi()
 	MoveSpeed = 600.f; // Default value, can be changed in editor or at runtime
 
     // Adjust this setting for stopping distance  
-    StoppingDistance = 100.f;
+    StoppingDistance = 2000.f;
 
 }
 
@@ -46,27 +48,45 @@ void ANpc_WalkAi::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    UE_LOG(LogTemp, Warning, TEXT("Tick is being called."));
+    //UE_LOG(LogTemp, Warning, TEXT("Tick is being called."));
 
     ACharacter* MyCharacter = Cast<ACharacter>(GetPawn());
     // Checks if both pawn and the target actor are valid
-    if (MyCharacter && TargetActor) 
+    if (MyCharacter && TargetActor)
     {
-        // Calculate the vector distance between AI and the target actor
-        FVector Delta = TargetActor->GetActorLocation() - MyCharacter->GetActorLocation();
+        // Get the bounding box of the target actor
+        FVector TargetActorCenter, TargetActorExtents;
+        TargetActor->GetActorBounds(false, TargetActorCenter, TargetActorExtents);
+
+        // Calculate the vector distance between AI and the center of the target actor's bounding box
+        FVector Delta = TargetActorCenter - MyCharacter->GetActorLocation();
         float DistanceToTarget = Delta.Size();
 
         if (DistanceToTarget > StoppingDistance)
-        { 
+        {
             // Move towards the target actor
-            UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, TargetActor->GetActorLocation());
-            UE_LOG(LogTemp, Warning, TEXT("Got character."));
+            UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, TargetActorCenter);
+
+            // Calculate the direction to the target actor's center
+            FVector DirectionToTarget = Delta.GetSafeNormal();
+            FRotator NewRotation = FRotationMatrix::MakeFromX(DirectionToTarget).Rotator();
+            MyCharacter->SetActorRotation(NewRotation);
+
+            //UE_LOG(LogTemp, Warning, TEXT("Moving towards target."));
         }
         else
         {
             // Stop moving if within stopping distance
             MyCharacter->GetCharacterMovement()->StopMovementImmediately();
-            UE_LOG(LogTemp, Warning, TEXT("Stop"));
+      
+
+            // Now grab the npc Shoot function
+            ANpc_Walk* MyNpc = Cast<ANpc_Walk>(MyCharacter);
+
+            if (MyNpc)
+            {
+                MyNpc->Shoot();
+            }
         }
     }
 }

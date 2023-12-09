@@ -54,7 +54,7 @@ void ANPCSpawner::SpawnNpcsAroundOutpost()
     {
 
         // Define the radius of the circle around the outpost where NPCs will spawn
-        float SpawnRadius = 3000.0f; // NPCs will spawn within 500 units of the safe house
+        float SpawnRadius = 6000.0f; // NPCs will spawn within 500 units of the safe house
 
         // Random angle in radians
         float RandomAngleRad = FMath::RandRange(0.f, 2.0f * PI);
