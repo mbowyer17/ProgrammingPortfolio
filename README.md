@@ -1,6 +1,6 @@
 # ProgrammingPortfolio
 
-Welcome! My Name is Matthew Bowyer, a passionate gameplay programmer with expertise in both Unity (C#) and Unreal (C++). I have a BSc with First Class Honours in Game Design and Development (Programming) at University of Greenwich. I'm Looking for an Intern or Junior position in Gameplay Programming.
+Welcome! My Name is Matthew Bowyer, a passionate gameplay programmer with expertise in both Unity (C#) and Unreal (C++). I have a BSc with First Class Honours in Game Design and Development (Programming) at University of Greenwich. I'm looking for an Intern or Junior position in Gameplay Programming.
 
 🎮 My Journey
 
@@ -22,3 +22,4 @@ Please note this portfolio is still a working progress, I still have access to t
 
 Linkedin: https://www.linkedin.com/in/matthewbowyer24/
 Itch.io: https://matthewbow.itch.io/ 
+Vimeo: https://vimeo.com/user211723556
