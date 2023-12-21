@@ -21,5 +21,8 @@ I invite you to explore the code samples below and see my problem-solving and co
 Please note this portfolio is still a working progress, I still have access to the project files, and I'm more than happy to share my work with you!
 
 Linkedin: https://www.linkedin.com/in/matthewbowyer24/
-Itch.io: https://matthewbow.itch.io/ 
+
+Itch.io: https://matthewbow.itch.io/
+
 Vimeo: https://vimeo.com/user211723556
+
